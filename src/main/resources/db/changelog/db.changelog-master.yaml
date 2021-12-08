@@ -1,0 +1,70 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Daniil_Livitin
+      changes:
+        - createTable:
+            tableName: survey
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: date_of_start
+                  type: date
+                  constraints:
+                    nullable: false
+              - column:
+                  name: date_of_end
+                  type: date
+                  constraints:
+                    nullable: false
+              - column:
+                  name: active
+                  type: boolean
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: question
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: survey_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: survey_id
+                    references: survey(id)
+                    nullable: false
+              - column:
+                  name: text
+                  type: varchar(150)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: display_order
+                  type: int
+                  constraints:
+                    nullable: false
+        - sql:
+            sql: insert into survey (id, name, date_of_start, date_of_end, active) values (-1, 'CQuiz_Number_1', '2021-12-08T11:46:29.805Z', '2025-12-08T11:46:29.805Z', true)
+        - sql:
+            sql: insert into survey (id, name, date_of_start, date_of_end, active) values (-12, 'BQuiz_Number_2', '2021-10-08T11:46:29.805Z', '2025-12-08T11:46:29.805Z', true)
+        - sql:
+            sql: insert into survey (id, name, date_of_start, date_of_end, active) values (-11, 'AQuiz_Number_3', '2021-12-12T11:46:29.805Z', '2025-12-08T11:46:29.805Z', true)
+        - sql:
+            sql: insert into survey (id, name, date_of_start, date_of_end, active) values (-10, 'DQuiz_Number_4', '2021-03-12T11:46:29.805Z', '2025-12-08T11:46:29.805Z', true)
